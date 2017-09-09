@@ -1,0 +1,38 @@
+h1= @post.post_title
+
+table
+  tbody
+    tr
+      th ID
+      td= @post.ID
+    tr
+      th Author
+      td= link_to @post.user.user_nicename, wp_user_path(@post.post_author)
+    tr
+      th Post Date
+      td= @post.post_date
+    tr
+      th Status
+      td= @post.post_status
+    tr
+      th Menu Order
+      td= @post.menu_order
+    tr
+      th Post Type
+      td= @post.post_type
+    tr
+      th Comment Count
+      td= @post.comment_count
+    - if @post.post_parent > 0
+      tr
+        th Parent
+        td= link_to @post.parent.post_title, wp_post_path(@post.parent)
+
+- if @post.post_excerpt.present?
+  h4 Excerpt
+  p= @post.post_excerpt
+- else
+  p No Excerpt
+
+h4 Content
+= raw @post.post_content
